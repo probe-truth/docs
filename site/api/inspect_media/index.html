@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://smileslab.github.io/probe_truth_docs/api/inspect_media/">
+        <link rel="canonical" href="https://probe-truth.github.io/docs/api/inspect_media/">
       
       
         <link rel="prev" href="../upload/">
@@ -154,7 +154,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/smileslab/probe_truth_docs" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/probe-truth/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
@@ -200,7 +200,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/smileslab/probe_truth_docs" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/probe-truth/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
@@ -489,13 +489,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-inspect-video" class="md-nav__link">
+  <a href="#1-initiate-media-inspection" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Inspect Video
+      1. Initiate Media Inspection
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Inspect Video">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoint">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -525,43 +534,98 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#example-success-response-inspection-initiated" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Success Response (Inspection Initiated)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-upload-id-or-case-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Missing Upload ID or Case ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalid-upload-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Invalid Upload ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unauthorized-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unauthorized Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incorrect-media-type-auto-detected-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Incorrect Media Type (Auto-detected internally)
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-inspect-audio" class="md-nav__link">
+  <a href="#2-get-media-inspection-status" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Inspect Audio
+      2. Get Media Inspection Status
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Inspect Audio">
+    <nav class="md-nav" aria-label="2. Get Media Inspection Status">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#authentication_1" class="md-nav__link">
+  <a href="#endpoint_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Authentication
+      Endpoint
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#request-body_1" class="md-nav__link">
+  <a href="#success-response" class="md-nav__link">
     <span class="md-ellipsis">
-      Request Body
+      Success Response
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#example-request_1" class="md-nav__link">
+  <a href="#status-values" class="md-nav__link">
     <span class="md-ellipsis">
-      Example Request
+      Status Values
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Status Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security &amp; Best Practices
     </span>
   </a>
   
@@ -569,43 +633,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-inspect-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Inspect Image
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. Inspect Image">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#authentication_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Authentication
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#request-body_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Request Body
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-request_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example Request
-    </span>
-  </a>
   
 </li>
         
@@ -746,13 +773,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-inspect-video" class="md-nav__link">
+  <a href="#1-initiate-media-inspection" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Inspect Video
+      1. Initiate Media Inspection
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Inspect Video">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoint">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -782,43 +818,98 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#example-success-response-inspection-initiated" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Success Response (Inspection Initiated)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-upload-id-or-case-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Missing Upload ID or Case ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalid-upload-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Invalid Upload ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unauthorized-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unauthorized Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incorrect-media-type-auto-detected-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Incorrect Media Type (Auto-detected internally)
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-inspect-audio" class="md-nav__link">
+  <a href="#2-get-media-inspection-status" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Inspect Audio
+      2. Get Media Inspection Status
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Inspect Audio">
+    <nav class="md-nav" aria-label="2. Get Media Inspection Status">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#authentication_1" class="md-nav__link">
+  <a href="#endpoint_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Authentication
+      Endpoint
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#request-body_1" class="md-nav__link">
+  <a href="#success-response" class="md-nav__link">
     <span class="md-ellipsis">
-      Request Body
+      Success Response
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#example-request_1" class="md-nav__link">
+  <a href="#status-values" class="md-nav__link">
     <span class="md-ellipsis">
-      Example Request
+      Status Values
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Status Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security &amp; Best Practices
     </span>
   </a>
   
@@ -826,43 +917,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-inspect-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Inspect Image
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. Inspect Image">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#authentication_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Authentication
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#request-body_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Request Body
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-request_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example Request
-    </span>
-  </a>
   
 </li>
         
@@ -891,17 +945,19 @@
 
 
 <h1 id="inspect-media">Inspect Media<a class="headerlink" href="#inspect-media" title="Permanent link">&para;</a></h1>
-<p>Once a media file is successfully uploaded using the <a href="#media-upload-endpoints">Upload Media Endpoints</a>, you can initiate deepfake analysis by calling the dedicated inspection endpoint for the specific media type and providing the <code>upload_id</code> in the request body.</p>
+<p>Once a media file is successfully uploaded via the <a href="../upload/">Upload Media Endpoint</a>, you can initiate a forensic deepfake analysis using the Media Inspection endpoint.</p>
+<p>We only store the hash of the file and the forensic report. The media file is deleted after inspection.</p>
+<p>Once a media file is successfully uploaded using the <a href="../upload/">Upload Media Endpoints</a>, you can initiate deepfake analysis by calling the dedicated inspection endpoint for the specific media type and providing the <code>upload_id</code> in the request body.</p>
 <hr />
 <p>There are separate endpoints to trigger the inspection process based on the type of uploaded media.</p>
-<h3 id="1-inspect-video">1. Inspect Video<a class="headerlink" href="#1-inspect-video" title="Permanent link">&para;</a></h3>
-<p>The <code>POST /v1/media/inspect/video</code> endpoint triggers the deepfake analysis pipeline for a previously uploaded video.</p>
-<p>Endpoint: 
-POST https://api.probetruth.ai/v1/media/inspect/video</p>
+<h3 id="1-initiate-media-inspection">1. Initiate Media Inspection<a class="headerlink" href="#1-initiate-media-inspection" title="Permanent link">&para;</a></h3>
+<p>The <code>POST /v1/inspection</code> endpoint triggers the deepfake analysis pipeline for a previously uploaded media.</p>
+<h2 id="endpoint">Endpoint<a class="headerlink" href="#endpoint" title="Permanent link">&para;</a></h2>
+<p><code>POST https://api.probetruth.ai/v1/inspection</code></p>
 <h4 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h4>
-<p>This endpoint requires <strong>JWT-based token authentication</strong> via AWS Cognito.</p>
-<p>Include the access token in the <code>Authorization</code> header.</p>
-<p>Authorization: Bearer <code>&lt;your_jwt_token_here&gt;</code></p>
+<p>This endpoint requires a valid API key. Include it in the <code>Authorization</code> header. Tokens are valid for 24 hours.:</p>
+<p><code>Authorization: Bearer YOUR_API_KEY</code></p>
+<p>API is accessible from whitelisted IPs. Ensure your IP is registered with ProbeTruth. SecurityScorecard tools are used to validate service security.</p>
 <h4 id="request-body">Request Body<a class="headerlink" href="#request-body" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -917,200 +973,95 @@ POST https://api.probetruth.ai/v1/media/inspect/video</p>
 <td><code>upload_id</code></td>
 <td>string</td>
 <td>Yes</td>
-<td>The unique ID of the uploaded video file.</td>
+<td>The unique ID of the uploaded media file.</td>
+</tr>
+<tr>
+<td><code>case_id</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Identifier for report tracking &amp; generation</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Content-Type:</strong> <code>application/json</code></p>
 <h4 id="example-request">Example Request<a class="headerlink" href="#example-request" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="n">curl</span><span class="w"> </span><span class="o">-</span><span class="n">X</span><span class="w"> </span><span class="n">POST</span><span class="w"> </span><span class="p">[</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">search</span><span class="err">?</span><span class="n">q</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">probetruth</span><span class="o">.</span><span class="n">ai</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">inspect</span><span class="o">/</span><span class="n">video</span><span class="p">]</span>
-<span class="p">(</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">search</span><span class="err">?</span><span class="n">q</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">probetruth</span><span class="o">.</span><span class="n">ai</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">inspect</span><span class="o">/</span><span class="n">video</span><span class="p">)</span><span class="w"> </span>\
+<div class="codehilite"><pre><span></span><code><span class="n">curl</span><span class="w"> </span><span class="o">-</span><span class="n">X</span><span class="w"> </span><span class="n">POST</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">probetruth</span><span class="o">.</span><span class="n">ai</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">inspection</span><span class="w"> </span>\
 <span class="w">  </span><span class="o">-</span><span class="n">H</span><span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your_jwt_token_here&gt;&quot;</span><span class="w"> </span>\
 <span class="w">  </span><span class="o">-</span><span class="n">H</span><span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>\
-<span class="w">  </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="s1">&#39;{&quot;upload_id&quot;: &quot;b91c0fe3-523d-4d3a-9e0e-17cc81c513ab&quot;}&#39;</span>
+<span class="w">  </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="s1">&#39;{</span>
+<span class="w">        </span><span class="s2">&quot;upload_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;845f9ac7-9a71-4fcb-8e25-2b7234c6e3fc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;case_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CASE-001&quot;</span>
+<span class="w">      </span><span class="p">}</span><span class="s1">&#39;</span>
 </code></pre></div>
 
-<p>Example Success Response (Inspection Initiated)</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;upload_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b91c0fe3-523d-4d3a-9e0e-17cc81c513ab&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;media_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;video&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;analysis_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;queued&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Video inspection initiated.&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Example Error Response (Authentication Failed)</p>
-<div class="codehilite"><pre><span></span><code>{
-  &quot;error&quot;: &quot;Unauthorized&quot;,
-  &quot;message&quot;: &quot;Invalid or missing token.&quot;
-}
-</code></pre></div>
-
-<p>Example Error Response (Missing upload_id in Request Body)</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bad Request&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The &#39;upload_id&#39; field is required in the request body.&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Example Error Response (Invalid upload_id)</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Not Found&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Video with upload ID &#39;invalid-id&#39; not found.&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Example Error Response (Incorrect Media Type)</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid Request&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Upload ID &#39;some-id&#39; does not correspond to a video file.&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<h3 id="1-inspect-audio">1. Inspect Audio<a class="headerlink" href="#1-inspect-audio" title="Permanent link">&para;</a></h3>
-<p>The POST /v1/media/inspect/audio endpoint triggers the deepfake analysis pipeline for a previously uploaded audio file.</p>
-<p>Endpoint: 
-POST <a href="https://api.probetruth.ai/v1/media/inspect/audio">https://api.probetruth.ai/v1/media/inspect/audio</a>
-This endpoint requires JWT-based token authentication via AWS Cognito.</p>
-<h4 id="authentication_1">Authentication<a class="headerlink" href="#authentication_1" title="Permanent link">&para;</a></h4>
-<p>This endpoint requires <strong>JWT-based token authentication</strong> via AWS Cognito.</p>
-<p>Include the access token in the <code>Authorization</code> header.</p>
-<p>Authorization: Bearer <code>&lt;your_jwt_token_here&gt;</code></p>
-<h4 id="request-body_1">Request Body<a class="headerlink" href="#request-body_1" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>upload_id</code></td>
-<td>string</td>
-<td>Yes</td>
-<td>The unique ID of the uploaded video file.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Content-Type:</strong> <code>application/json</code></p>
-<h4 id="example-request_1">Example Request<a class="headerlink" href="#example-request_1" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="n">curl</span><span class="w"> </span><span class="o">-</span><span class="n">X</span><span class="w"> </span><span class="n">POST</span><span class="w"> </span><span class="p">[</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">probetruth</span><span class="o">.</span><span class="n">ai</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">inspect</span><span class="o">/</span><span class="n">audio</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">probetruth</span><span class="o">.</span><span class="n">ai</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">inspect</span><span class="o">/</span><span class="n">audio</span><span class="p">)</span><span class="w"> </span>\
-<span class="w">  </span><span class="o">-</span><span class="n">H</span><span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your_jwt_token_here&gt;&quot;</span><span class="w"> </span>\
-<span class="w">  </span><span class="o">-</span><span class="n">H</span><span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>\
-<span class="w">  </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="s1">&#39;{&quot;upload_id&quot;: &quot;845f9ac7-9a71-4fcb-8e25-2b7234c6e3fc&quot;}&#39;</span>
-</code></pre></div>
-
-<p>Example Success Response (Inspection Initiated)</p>
+<h3 id="example-success-response-inspection-initiated">Example Success Response (Inspection Initiated)<a class="headerlink" href="#example-success-response-inspection-initiated" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="s2">&quot;upload_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;845f9ac7-9a71-4fcb-8e25-2b7234c6e3fc&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;media_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;audio&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;case_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CASE-001&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="s2">&quot;analysis_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;queued&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Audio inspection initiated.&quot;</span>
+<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Media inspection initiated.&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<p>Example Error Response (Authentication Failed)</p>
+<h3 id="missing-upload-id-or-case-id">Missing Upload ID or Case ID<a class="headerlink" href="#missing-upload-id-or-case-id" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bad Request&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The &#39;upload_id&#39; and &#39;case_id&#39; fields are required.&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="invalid-upload-id">Invalid Upload ID<a class="headerlink" href="#invalid-upload-id" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Not Found&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Media with upload ID &#39;invalid-id&#39; not found.&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="unauthorized-token">Unauthorized Token<a class="headerlink" href="#unauthorized-token" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code>{
   &quot;error&quot;: &quot;Unauthorized&quot;,
   &quot;message&quot;: &quot;Invalid or missing token.&quot;
 }
 </code></pre></div>
 
-<p>Example Error Response (Missing upload_id in Request Body)</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bad Request&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The &#39;upload_id&#39; field is required in the request body.&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Example Error Response (Invalid upload_id)</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Not Found&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Audio with upload ID &#39;invalid-id&#39; not found.&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Example Error Response (Incorrect Media Type)</p>
+<h3 id="incorrect-media-type-auto-detected-internally">Incorrect Media Type (Auto-detected internally)<a class="headerlink" href="#incorrect-media-type-auto-detected-internally" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid Request&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Upload ID &#39;some-id&#39; does not correspond to an audio file.&quot;</span>
+<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Upload ID &#39;xyz&#39; does not correspond to a valid media file.&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<h3 id="1-inspect-image">1. Inspect Image<a class="headerlink" href="#1-inspect-image" title="Permanent link">&para;</a></h3>
-<p>The POST /v1/media/inspect/image endpoint triggers the deepfake analysis pipeline for a previously uploaded image file.</p>
-<p>Endpoint: 
-POST <a href="https://api.probetruth.ai/v1/media/inspect/image">https://api.probetruth.ai/v1/media/inspect/image</a></p>
-<h4 id="authentication_2">Authentication<a class="headerlink" href="#authentication_2" title="Permanent link">&para;</a></h4>
-<p>This endpoint requires <strong>JWT-based token authentication</strong> via AWS Cognito.</p>
-<p>Include the access token in the <code>Authorization</code> header.</p>
-<p>Authorization: Bearer <code>&lt;your_jwt_token_here&gt;</code></p>
-<h4 id="request-body_2">Request Body<a class="headerlink" href="#request-body_2" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>upload_id</code></td>
-<td>string</td>
-<td>Yes</td>
-<td>The unique ID of the uploaded video file.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Content-Type:</strong> <code>application/json</code></p>
-<h4 id="example-request_2">Example Request<a class="headerlink" href="#example-request_2" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="n">curl</span><span class="w"> </span><span class="o">-</span><span class="n">X</span><span class="w"> </span><span class="n">POST</span><span class="w"> </span><span class="p">[</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">probetruth</span><span class="o">.</span><span class="n">ai</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">inspect</span><span class="o">/</span><span class="n">image</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">probetruth</span><span class="o">.</span><span class="n">ai</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">inspect</span><span class="o">/</span><span class="n">image</span><span class="p">)</span><span class="w"> </span>\
-<span class="w">  </span><span class="o">-</span><span class="n">H</span><span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your_jwt_token_here&gt;&quot;</span><span class="w"> </span>\
-<span class="w">  </span><span class="o">-</span><span class="n">H</span><span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>\
-<span class="w">  </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="s1">&#39;{&quot;upload_id&quot;: &quot;132e894e-772e-4a7e-8617-d6765f982032&quot;}&#39;</span>
-</code></pre></div>
-
-<p>Example Success Response (Inspection Initiated)</p>
+<h2 id="2-get-media-inspection-status">2. Get Media Inspection Status<a class="headerlink" href="#2-get-media-inspection-status" title="Permanent link">&para;</a></h2>
+<h3 id="endpoint_1">Endpoint<a class="headerlink" href="#endpoint_1" title="Permanent link">&para;</a></h3>
+<p><code>GET https://api.probetruth.ai/v1/inspection/{upload_id}</code></p>
+<p>This returns the current analysis status and the final result if available.</p>
+<h3 id="success-response">Success Response<a class="headerlink" href="#success-response" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;upload_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;132e894e-772e-4a7e-8617-d6765f982032&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;media_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;analysis_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;queued&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Image inspection initiated.&quot;</span>
+<span class="w">  </span><span class="s2">&quot;upload_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;845f9ac7-9a71-4fcb-8e25-2b7234c6e3fc&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;case_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CASE-001&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;completed&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fake&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.92</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;hash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SHA256:ae29cbf7d2...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;report_available&quot;</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<p>Example Error Response (Authentication Failed)</p>
-<div class="codehilite"><pre><span></span><code>{
-  &quot;error&quot;: &quot;Unauthorized&quot;,
-  &quot;message&quot;: &quot;Invalid or missing token.&quot;
-}
-</code></pre></div>
-
-<p>Example Error Response (Missing upload_id in Request Body)</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bad Request&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The &#39;upload_id&#39; field is required in the request body.&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Example Error Response (Invalid upload_id)</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Not Found&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Image with upload ID &#39;invalid-id&#39; not found.&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Example Error Response (Incorrect Media Type)</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid Request&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Upload ID &#39;some-id&#39; does not correspond to an image file.&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
+<h3 id="status-values">Status Values<a class="headerlink" href="#status-values" title="Permanent link">&para;</a></h3>
+<ul>
+<li>queued</li>
+<li>processing</li>
+<li>completed</li>
+<li>failed</li>
+</ul>
+<h4 id="security-best-practices">Security &amp; Best Practices<a class="headerlink" href="#security-best-practices" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Tokens are valid for 24 hours  </li>
+<li>IP whitelisting enforced for access  </li>
+<li>Files are deleted post-inspection  </li>
+<li>Only SHA256 file hashes are stored  </li>
+<li>SecurityScorecard is used periodically to test API security  </li>
+</ul>
 
 
 

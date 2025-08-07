@@ -21,7 +21,7 @@ Refer to the [Authentication Guide](authentication.md) for full details.
 
 Upload a video, audio, or image file for analysis.
 
-**Endpoint**: `POST /v1/media/upload`  
+**Endpoint**: `POST /v1/media`  
 [View full documentation →](upload.md)
 
 ---
@@ -30,7 +30,7 @@ Upload a video, audio, or image file for analysis.
 
 Trigger forensic inspection on previously uploaded media.
 
-**Endpoint**: `POST /v1/media/inspect`  
+**Endpoint**: `POST /v1/inspection`  
 [View full documentation →](inspect_media.md)
 
 ---
@@ -39,7 +39,7 @@ Trigger forensic inspection on previously uploaded media.
 
 Retrieve a detailed report after inspection is completed.
 
-**Endpoint**: `GET /v1/media/report/{media_id}`  
+**Endpoint**: `POST /v1/reports`  
 [View full documentation →](generate_report.md)
 
 ---

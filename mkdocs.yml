@@ -1,7 +1,7 @@
 site_name: ProbeTruth Documentation
-site_url: https://smileslab.github.io/probe_truth_docs/
+site_url: https://probe-truth.github.io/docs/
 use_directory_urls: true
-repo_url: https://github.com/smileslab/probe_truth_docs # Optional: replace with your actual repo URL
+repo_url: https://github.com/probe-truth/docs # Optional: replace with your actual repo URL
 theme:
   name: material
 

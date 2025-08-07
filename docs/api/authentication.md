@@ -20,7 +20,8 @@ To gain access to the ProbeTruth API:
 
 1. Contact us at [demo@probetruth.ai](mailto:demo@probetruth.ai) to request API access.
 2. We’ll provision access to a **Cognito User Pool** and send you the necessary credentials (Client ID, Pool ID, Region).
-3. You can authenticate via:
+3. Additionally, your IP address will be whitelisted for enhanced security.
+4. You can authenticate via:
     - Hosted UI (Login page hosted by Cognito)
     - Directly using SDKs like AWS Amplify or Amazon Cognito Identity SDK.
 
@@ -28,7 +29,7 @@ To gain access to the ProbeTruth API:
 
 ## Token-Based Authentication
 
-Once authenticated, your client will receive a **JWT access token** from Cognito.
+Once authenticated, your client will receive a **JWT access token** from Cognito. These tokens are valid for 24 hours.
 
 Include this token in the `Authorization` header of all API requests:
 
@@ -43,7 +44,7 @@ The token is automatically validated by our **API Gateway Authorizer** before an
 import requests
 
 JWT_TOKEN = 'your_jwt_access_token_here'
-API_URL = 'https://api.probetruth.ai/v1/report-status'
+API_URL = 'https://api.probetruth.ai/v1/inspection/{upload_id}'
 
 headers = {
 'Authorization': f'Bearer {JWT_TOKEN}'
@@ -90,6 +91,7 @@ jwt_token = response['AuthenticationResult']['AccessToken']
 
 - **Never expose your token** in frontend JavaScript or public repositories.
 - **Rotate credentials** periodically.
+- Use third-party tools like **SecurityScorecard** to regularly assess the security posture of your application.
 
 ---
 

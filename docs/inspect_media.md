@@ -1,6 +1,6 @@
 # Media Inspection
 
-Once a media file is successfully uploaded using the `POST /v1/media/upload` endpoint, you can initiate deepfake analysis through the **"Inspect Media"** action in the ProbeTruth interface.
+Once a media file is successfully uploaded using the `POST /v1/media` endpoint, you can initiate deepfake analysis through the **"Inspect Media"** action in the ProbeTruth interface.
 
 This process automatically triggers backend analysis using multiple AI models, depending on the type of uploaded media (video, audio, or image). No additional API call or input parameters are required at this step.
 
@@ -9,7 +9,7 @@ This process automatically triggers backend analysis using multiple AI models, d
 ## Workflow
 
 1. **Upload Media**  
-   Upload a video, audio, or image file using the `/v1/media/upload` endpoint.
+   Upload a video, audio, or image file using the `/v1/media` endpoint.
 
 2. **Inspect Media**  
    After upload, click the **"Inspect Media"** button in the ProbeTruth dashboard. This triggers backend analysis.

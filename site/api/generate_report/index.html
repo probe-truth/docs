@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://smileslab.github.io/probe_truth_docs/api/generate_report/">
+        <link rel="canonical" href="https://probe-truth.github.io/docs/api/generate_report/">
       
       
         <link rel="prev" href="../inspect_media/">
@@ -154,7 +154,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/smileslab/probe_truth_docs" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/probe-truth/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
@@ -200,7 +200,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/smileslab/probe_truth_docs" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/probe-truth/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
@@ -569,6 +569,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#success-pdf-report-200-ok-returns-a-binary-stream-of-the-pdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Success: PDF Report (200 OK) returns a binary stream of the PDF:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#success-json-report-200-ok-returns-the-url-of-the-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Success: JSON Report (200 OK) returns the URL of the JSON:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -755,6 +779,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#success-pdf-report-200-ok-returns-a-binary-stream-of-the-pdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Success: PDF Report (200 OK) returns a binary stream of the PDF:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#success-json-report-200-ok-returns-the-url-of-the-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Success: JSON Report (200 OK) returns the URL of the JSON:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -795,15 +843,15 @@
 
 
 <h1 id="generate-forensic-report">Generate Forensic Report<a class="headerlink" href="#generate-forensic-report" title="Permanent link">&para;</a></h1>
-<p>After completing the media inspection (see <a href="#initiate-media-inspection-endpoints">Initiate Media Inspection Endpoints</a>), you can generate a comprehensive PDF report summarizing the results of the deepfake detection process. This report can be downloaded and printed for legal, forensic, or internal documentation purposes.</p>
+<p>After media inspection is complete (see <a href="../inspect_media/">Media Inspection Endpoints</a>), a detailed forensic report can be generated. This report includes classification results (e.g., real, fake) along with the model’s confidence score, and can be downloaded as a PDF or JSON for documentation purposes.</p>
 <hr />
 <h2 id="endpoint">Endpoint<a class="headerlink" href="#endpoint" title="Permanent link">&para;</a></h2>
-<p>POST https://api.probetruth.ai/v1/report/generate</p>
+<p>POST https://api.probetruth.ai/v1/reports</p>
 <hr />
 <h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
-<p>This endpoint requires <strong>JWT-based token authentication</strong> via AWS Cognito.</p>
-<p>Include the access token in the <code>Authorization</code> header.</p>
-<p>Authorization: Bearer &lt;your_jwt_token_here&gt;</p>
+<p>This endpoint requires a valid API key. Include it in the <code>Authorization</code> header. Tokens are valid for 24 hours.:</p>
+<p><code>Authorization: Bearer YOUR_API_KEY</code></p>
+<p>API is accessible from whitelisted IPs. Ensure your IP is registered with ProbeTruth. SecurityScorecard tools are used to validate service security.</p>
 <hr />
 <h2 id="headers">Headers<a class="headerlink" href="#headers" title="Permanent link">&para;</a></h2>
 <table>
@@ -824,11 +872,11 @@
 </tr>
 <tr>
 <td><code>Accept</code></td>
-<td><code>application/pdf</code></td>
+<td><code>application/pdf</code> or <code>application/json</code></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Note:</strong> The <code>Accept: application/pdf</code> header informs the server that the client expects a PDF file in the response.</p>
+<p><strong>Note:</strong> The media type (PDF/JSON) is inferred from the Accept header. No need to specify this in the body.</p>
 <hr />
 <h2 id="request-body">Request Body<a class="headerlink" href="#request-body" title="Permanent link">&para;</a></h2>
 <table>
@@ -847,26 +895,43 @@
 <td>Yes</td>
 <td>The unique ID of the media file to generate the report for.</td>
 </tr>
+<tr>
+<td><code>case_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Case number to associate the report with legal tracking.</td>
+</tr>
 </tbody>
 </table>
-<p><strong>Content-Type:</strong> <code>application/json</code></p>
 <h4 id="example-request">Example Request<a class="headerlink" href="#example-request" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="o">[</span>https://api.probetruth.ai/v1/report/generate<span class="o">](</span>https://api.probetruth.ai/v1/report/generate<span class="o">)</span><span class="w"> </span><span class="se">\</span>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://api.probetruth.ai/v1/reports<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your_jwt_token_here&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Accept: application/pdf&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;media_id&quot;: &quot;b91c0fe3-523d-4d3a-9e0e-17cc81c513ab&quot;}&#39;</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">        &quot;media_id&quot;: &quot;b91c0fe3-523d-4d3a-9e0e-17cc81c513ab&quot;,</span>
+<span class="s1">        &quot;case_id&quot;: &quot;CASE-2025-0001&quot;</span>
+<span class="s1">      }&#39;</span>
 </code></pre></div>
 
 <hr />
 <h2 id="response">Response<a class="headerlink" href="#response" title="Permanent link">&para;</a></h2>
-<p><strong>Success Response (HTTP 200 OK)</strong></p>
-<p>The PDF file will be directly streamed in the response body with the <code>Content-Type: application/pdf</code> header.</p>
-<p><strong>Example Success Response (Illustrative - Binary Data)</strong></p>
+<h3 id="success-pdf-report-200-ok-returns-a-binary-stream-of-the-pdf">Success: PDF Report (200 OK) returns a binary stream of the PDF:<a class="headerlink" href="#success-pdf-report-200-ok-returns-a-binary-stream-of-the-pdf" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="c">%PDF-1.7</span>
 <span class="n">1</span><span class="w"> </span><span class="s">0</span><span class="w"> </span><span class="s">obj</span>
-<span class="k">...</span><span class="c"> (binary PDF data) ...</span>
+<span class="k">...</span><span class="c">binary PDF data...</span>
 <span class="c">%%EOF</span>
+</code></pre></div>
+
+<p>The PDF file will be directly streamed in the response body with the <code>Content-Type: application/pdf</code> header.</p>
+<h3 id="success-json-report-200-ok-returns-the-url-of-the-json">Success: JSON Report (200 OK) returns the URL of the JSON:<a class="headerlink" href="#success-json-report-200-ok-returns-the-url-of-the-json" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>{
+  &quot;media_id&quot;: &quot;b91c0fe3-523d-4d3a-9e0e-17cc81c513ab&quot;,
+  &quot;case_id&quot;: &quot;CASE-2025-0001&quot;,
+  &quot;status&quot;: &quot;suspicious&quot;,
+  &quot;confidence&quot;: 0.78,
+  &quot;report_url&quot;: &quot;https://cdn.probetruth.ai/reports/CASE-2025-0001.json&quot;
+}
 </code></pre></div>
 
 <p><strong>Error Responses</strong></p>
@@ -905,37 +970,40 @@
 <h2 id="request-example-python">Request Example (Python)<a class="headerlink" href="#request-example-python" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
-<span class="n">API_TOKEN</span> <span class="o">=</span> <span class="s1">&#39;your_jwt_token_here&#39;</span>
-<span class="n">MEDIA_ID</span> <span class="o">=</span> <span class="s1">&#39;b91c0fe3-523d-4d3a-9e0e-17cc81c513ab&#39;</span>
+<span class="n">token</span> <span class="o">=</span> <span class="s1">&#39;your_jwt_token_here&#39;</span>
+<span class="n">media_id</span> <span class="o">=</span> <span class="s1">&#39;b91c0fe3-523d-4d3a-9e0e-17cc81c513ab&#39;</span>
+<span class="n">case_id</span> <span class="o">=</span> <span class="s1">&#39;CASE-2025-0001&#39;</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Bearer </span><span class="si">{</span><span class="n">API_TOKEN</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
     <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
     <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/pdf&#39;</span>
 <span class="p">}</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;media_id&#39;</span><span class="p">:</span> <span class="n">MEDIA_ID</span>
+    <span class="s1">&#39;media_id&#39;</span><span class="p">:</span> <span class="n">media_id</span><span class="p">,</span>
+    <span class="s1">&#39;case_id&#39;</span><span class="p">:</span> <span class="n">case_id</span>
 <span class="p">}</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;[https://api.probetruth.ai/v1/report/generate](https://api.probetruth.ai/v1/report/generate)&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;https://api.probetruth.ai/v1/reports&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;forensic_report_</span><span class="si">{</span><span class="n">MEDIA_ID</span><span class="si">}</span><span class="s1">.pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pdf_file</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;report_</span><span class="si">{</span><span class="n">case_id</span><span class="si">}</span><span class="s1">.pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span><span class="p">):</span>
-            <span class="n">pdf_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Report for media ID &#39;</span><span class="si">{</span><span class="n">MEDIA_ID</span><span class="si">}</span><span class="s2">&#39; downloaded successfully.&quot;</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Report downloaded successfully.&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error generating report for media ID &#39;</span><span class="si">{</span><span class="n">MEDIA_ID</span><span class="si">}</span><span class="s2">&#39;:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to generate report: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 <hr />
 <h2 id="developer-notes">Developer Notes<a class="headerlink" href="#developer-notes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>This endpoint returns the PDF file directly in the response body as a binary stream. Ensure your client-side code is capable of handling binary data.</li>
-<li>The <code>Accept: application/pdf</code> header is crucial for indicating the expected response format.</li>
-<li>Always check the <code>analysis_status</code> to ensure the analysis is complete before attempting to generate a report.</li>
-<li>Error handling is essential to manage scenarios where the media ID is invalid or the report generation fails.</li>
+<li>Media type (PDF/JSON) is handled via the <code>Accept</code> header.</li>
+<li>IP whitelisting is enforced at the firewall level.</li>
+<li>All uploaded files are deleted after inspection; only SHA256 hashes and forensic reports are stored.</li>
+<li><code>status</code> (<code>real</code>, <code>fake</code>) and confidence score are returned in the report.</li>
+<li>All endpoints are tested with <a href="https://securityscorecard.com">SecurityScorecard</a> for cybersecurity compliance.</li>
 </ul>
 
 

@@ -1,6 +1,6 @@
 # Upload Media
 
-The `POST /v1/media/upload` endpoint allows you to upload media for deepfake analysis. This is the first step in the ProbeTruth detection pipeline.
+The `POST /v1/media` endpoint allows you to upload video, audio, or image files for deepfake forensic inspection. This is the first step in the ProbeTruth detection pipeline.
 
 You can upload **videos**, **audio**, or **images** for forensic evaluation.
 
@@ -8,15 +8,17 @@ You can upload **videos**, **audio**, or **images** for forensic evaluation.
 
 ## Endpoint
 
-`POST https://api.probetruth.ai/v1/media/upload`
+`POST https://api.probetruth.ai/v1/media`
 
 ---
 
 ## Authentication
 
-This endpoint requires a valid API key. Include it in the `Authorization` header:
+This endpoint requires a valid API key. Include it in the `Authorization` header. Tokens are valid for 24 hours.:
 
 `Authorization: Bearer YOUR_API_KEY`
+
+API is accessible from whitelisted IPs. Ensure your IP is registered with ProbeTruth. SecurityScorecard tools are used to validate service security.
 
 ---
 
@@ -41,71 +43,29 @@ This endpoint requires a valid API key. Include it in the `Authorization` header
 | Field        | Type     | Required | Description                            |
 |--------------|----------|----------|----------------------------------------|
 | file         | file     | Yes      | The media file to be analyzed          |
-| media_type   | string   | Yes      | Must be one of: `video`, `audio`, `image` |
 | filename     | string   | No       | Optional custom name for the upload    |
 
 ---
 
-## Example: Upload Video
+## Example: Upload Media
 
 ```
-curl -X POST https://api.probetruth.ai/v1/media/upload \
+curl -X POST https://api.probetruth.ai/v1/media \
   -H "Authorization: Bearer <your_jwt_token_here>" \
   -F "file=@/path/to/your/video.mp4" \
-  -F "media_type=video"
 ```
 
 **Response**
 ```
 {
   "upload_id": "b91c0fe3-523d-4d3a-9e0e-17cc81c513ab",
-  "media_type": "video",
   "status": "uploaded",
-  "message": "Video successfully uploaded and queued for analysis."
+  "message": "Media successfully uploaded and queued for analysis."
 }
 ```
 
 ---
 
-## Example: Upload Audio
-
-```
-curl -X POST https://api.probetruth.ai/v1/media/upload \
-  -H "Authorization: Bearer <your_jwt_token_here>" \
-  -F "file=@/path/to/your/audio.wav" \
-  -F "media_type=audio"
-```
-
-**Response**
-```
-{
-  "upload_id": "845f9ac7-9a71-4fcb-8e25-2b7234c6e3fc",
-  "media_type": "audio",
-  "status": "uploaded",
-  "message": "Audio successfully uploaded and queued for analysis."
-}
-```
-
----
-
-## Example: Upload Image
-
-```
-curl -X POST https://api.probetruth.ai/v1/media/upload \
-  -H "Authorization: Bearer <your_jwt_token_here>" \
-  -F "file=@/path/to/your/image.jpg" \
-  -F "media_type=image"
-```
-
-**Response**
-```
-{
-  "upload_id": "132e894e-772e-4a7e-8617-d6765f982032",
-  "media_type": "image",
-  "status": "uploaded",
-  "message": "Image successfully uploaded and queued for analysis."
-}
-```
 ## Error Responses
 All endpoints return these common error responses:
 
@@ -126,17 +86,17 @@ All endpoints return these common error responses:
 413 Payload Too Large
 ```
 {
-  "error": "File size exceeds 100MB limit"
+  "error": "File size exceeds 500MB limit"
 }
 ```
 ---
 
 ## Next Step
 
-Once uploaded, use the returned `upload_id` to query analysis results:
+Once uploaded, use the returned `upload_id` to perform media inspection:
 
 ```
-GET /v1/report-status?upload_id=<upload_id>
+POST /v1/inspection
 ```
 
 ## Developer Notes

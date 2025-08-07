@@ -72,7 +72,7 @@ Contact [demo@probetruth.ai](mailto:demo@probetruth.ai) to discuss your business
 ## Next Steps
 
 - Explore the [API Reference](api/authentication.md)
-- Learn about our [Detection Models](models/visual.md)
+- Learn about our [Detection Models](api/models.md)
 - Review our [Security Practices](security.md)
 
 Need help? Contact us anytime at [support@probetruth.ai](mailto:support@probetruth.ai)

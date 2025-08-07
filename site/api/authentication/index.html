@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://smileslab.github.io/probe_truth_docs/api/authentication/">
+        <link rel="canonical" href="https://probe-truth.github.io/docs/api/authentication/">
       
       
         <link rel="prev" href="../api_reference/">
@@ -154,7 +154,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/smileslab/probe_truth_docs" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/probe-truth/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
@@ -200,7 +200,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/smileslab/probe_truth_docs" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/probe-truth/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
@@ -842,6 +842,7 @@
 <ol>
 <li>Contact us at <a href="mailto:demo@probetruth.ai">demo@probetruth.ai</a> to request API access.</li>
 <li>We’ll provision access to a <strong>Cognito User Pool</strong> and send you the necessary credentials (Client ID, Pool ID, Region).</li>
+<li>Additionally, your IP address will be whitelisted for enhanced security.</li>
 <li>You can authenticate via:<ul>
 <li>Hosted UI (Login page hosted by Cognito)</li>
 <li>Directly using SDKs like AWS Amplify or Amazon Cognito Identity SDK.</li>
@@ -850,7 +851,7 @@
 </ol>
 <hr />
 <h2 id="token-based-authentication">Token-Based Authentication<a class="headerlink" href="#token-based-authentication" title="Permanent link">&para;</a></h2>
-<p>Once authenticated, your client will receive a <strong>JWT access token</strong> from Cognito.</p>
+<p>Once authenticated, your client will receive a <strong>JWT access token</strong> from Cognito. These tokens are valid for 24 hours.</p>
 <p>Include this token in the <code>Authorization</code> header of all API requests:</p>
 <p>Authorization: Bearer <code>&lt;your_jwt_token_here&gt;</code></p>
 <p>The token is automatically validated by our <strong>API Gateway Authorizer</strong> before any request is forwarded to the inference engine.</p>
@@ -859,7 +860,7 @@
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
 <span class="n">JWT_TOKEN</span> <span class="o">=</span> <span class="s1">&#39;your_jwt_access_token_here&#39;</span>
-<span class="n">API_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api.probetruth.ai/v1/report-status&#39;</span>
+<span class="n">API_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api.probetruth.ai/v1/inspection/</span><span class="si">{upload_id}</span><span class="s1">&#39;</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
 <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Bearer </span><span class="si">{</span><span class="n">JWT_TOKEN</span><span class="si">}</span><span class="s1">&#39;</span>
@@ -901,6 +902,7 @@
 <ul>
 <li><strong>Never expose your token</strong> in frontend JavaScript or public repositories.</li>
 <li><strong>Rotate credentials</strong> periodically.</li>
+<li>Use third-party tools like <strong>SecurityScorecard</strong> to regularly assess the security posture of your application.</li>
 </ul>
 <hr />
 <h2 id="coming-soon">Coming Soon<a class="headerlink" href="#coming-soon" title="Permanent link">&para;</a></h2>

@@ -10,7 +10,7 @@ Once the media has been analyzed and predictions are available, clicking the **"
 
 1. Compile all analysis results.
 2. Structure the content into a formal forensic report.
-3. Provide a downloadable **PDF file** with optional print support.
+3. Provide a downloadable **PDF or JSON file** with optional print support.
 
 ---
 
@@ -53,6 +53,6 @@ The generated report includes the following sections:
 
 ## Download & Print
 
-- The generated report is available in **PDF format**.
+- The generated report is available in **PDF or JSON format**.
 - Users can **download** or **print** directly from the browser.
 - Reports can also be accessed later via the media history panel (if enabled).

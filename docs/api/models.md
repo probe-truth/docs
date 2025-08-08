@@ -96,12 +96,37 @@ curl -X POST https://api.probetruth.ai/v1/media/upload \
 {
   "upload_id": "845f9ac7-9a71-4fcb-8e25-2b7234c6e3fc",
   "case_id": "CASE-001",
-  "models": {"DARL": {"predicted": "", "confidence": ""},
-             "DBaG-Net": {"predicted": "", "confidence": ""},
-             "Atten-ViT": {"predicted": "", "confidence": ""},
-             "Audio-RRL": {"predicted": "", "confidence": ""},
-             "PSA-Net": {"predicted": "", "confidence": ""},
-             "Spot-Net": {"predicted": "", "confidence": ""}
-             }
+  "models": {
+    "DARL": {
+      "predicted": "",
+      "confidence": "",
+      "modality": "audiovisual"
+    },
+    "DBaG-Net": {
+      "predicted": "",
+      "confidence": "",
+      "modality": "visual"
+    },
+    "Atten-ViT": {
+      "predicted": "",
+      "confidence": "",
+      "modality": "visual"
+    },
+    "Audio-RRL": {
+      "predicted": "",
+      "confidence": "",
+      "modality": "audio"
+    },
+    "PSA-Net": {
+      "predicted": "",
+      "confidence": "",
+      "modality": "audio"
+    },
+    "Spot-Net": {
+      "predicted": "",
+      "confidence": "",
+      "modality": "audio"
+    }
+  }
 }
 ```

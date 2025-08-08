@@ -78,16 +78,16 @@ Include the access token in the `Authorization` header.
 
 ### Request Body
 
-| Field       | Type   | Required | Description                               |
-|-------------|--------|----------|-------------------------------------------|
-| `upload_id` | string | Yes      | The unique ID of the uploaded file.       |
+| Field     | Type   | Required | Description                       |
+|-----------|--------|----------|-----------------------------------|
+| `case_id` | string | Yes      | The unique case ID of the report. |
 
 ### Example Request
 ```
 curl -X POST https://api.probetruth.ai/v1/media/upload \
   -H "Authorization: Bearer <your_jwt_token_here>" \
   -d '{
-        "upload_id": "845f9ac7-9a71-4fcb-8e25-2b7234c6e3fc"
+        "case_id": "CASE-001"
       }'
 ```
 

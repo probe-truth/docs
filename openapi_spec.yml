@@ -1,0 +1,162 @@
+openapi: 3.0.3
+info:
+  title: Deeptect API Documentation
+  version: 1.0.0
+  description: Deeptect is a product that uses patented technology for the detection of Audio, Audiovisual, and Visual deepfakes.
+servers:
+  - url: https://7biv2ac9kd.execute-api.us-east-2.amazonaws.com/
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    LoginRequest:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          description: The user's username
+        password:
+          type: string
+          description: The user's password
+
+    UploadFilePresignUrlRequest:
+      type: object
+      required:
+        - filename
+      properties:
+        filename:
+          type: string
+          description: Filename for the upload
+
+    LoginSuccessResponse:
+      type: object
+      properties:
+        id_token:
+          type: string
+          description: JWT ID token for the user
+        access_token:
+          type: string
+          description: JWT access token for API authorization
+        refresh_token:
+          type: string
+          description: Token to refresh the access token
+        expires_in:
+          type: integer
+          description: Time in seconds until the access token expires
+        description:
+          type: string
+          description: Instructions for using the tokens
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+    HealthResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Health status of the API
+
+    UserUploadResponse:
+      type: object
+      properties:
+        presignResponse:
+          type: object
+          description: Presign response from s3 containing the temporary url for uploading the specified file
+        upload_id:
+          type: string
+          description: The unique identifier which is used in subsequent API calls for the specified file
+        method:
+          type: string
+          description: The HTTP method for the upload (e.g., POST)
+
+paths:
+  /health:
+    get:
+      summary: Check API health
+      description: Used for checking that the API service is in a healthy state
+      responses:
+        '200':
+          description: API is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /login:
+    post:
+      summary: Authenticate a user and return JWT tokens
+      description: Authenticates a user with username and password, returning JWT tokens from Cognito User Pools
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Successful authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginSuccessResponse'
+        '401':
+          description: Invalid username or password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: User not confirmed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /v1/user_uploads:
+    post:
+      summary: Generate a presigned URL for user file uploads
+      description: Creates a presigned URL or metadata for user file uploads, returning an upload ID and method
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadFilePresignUrlRequest'
+      responses:
+        '200':
+          description: Successfully retrieved the presigned s3 url for upload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserUploadResponse'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'

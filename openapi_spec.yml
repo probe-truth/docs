@@ -2,9 +2,48 @@ openapi: 3.0.3
 info:
   title: Deeptect API Documentation
   version: 1.0.0
-  description: Deeptect is a product that uses patented technology for the detection of Audio, Audiovisual, and Visual deepfakes.
+  description: >
+    # Introduction
+    
+    Deeptect is a product that uses patented technology for the detection of Audio, Audiovisual, and Visual deepfakes.
+    
+    ## Usage
+    
+    Deeptect is available as a web app plus API. The web app can be used like a normal website. 
+    The API is for programmatic usage, e.g for integrating into existing enterprise applications. 
+    
+    ### Authentication
+    
+    *webportal* Standard username/password based auth.
+    
+    *API* The /login endpoint is used to fetch a JWT token that is used in subsequent API calls. 
+    The username/password are passed in the body of the request using base64 encoding with the format "username:password"
+    
+    
+    ### Uploading a file
+    
+    The API supports large file uploads by using presigned URLs. The process starts with a request to the 
+    /v1/uploads endpoint with the request body containing the "filename". The server returns a presigned URL 
+    that is then used in subsequent operations. Example code using python is provided below. 
+    <details>
+      <summary>Python Example Code</summary>
+    ```python
+      import requests  # install requests package 
+      
+      api_endpoint = "placeholder"
+      jwt_token = "placeholder"  # add the jwt_token, either through environment variables or other mechanisms
+      auth_header = {"Authorization": f"Bearer {jwt_token}"}
+      upload_request_body = json.dumps({"filename": "placeholder.wav"})  # specify the filename of the upload
+      
+      presigned_url_response = requests.post(api_endpoint + "/v1/uploads", data=upload_request_body)  
+    ```
+    </details>
+    
+    
+
 servers:
   - url: https://7biv2ac9kd.execute-api.us-east-2.amazonaws.com/
+    description: Development endpoint for Deeptect
 components:
   securitySchemes:
     bearerAuth:

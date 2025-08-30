@@ -28,16 +28,37 @@ info:
     <details>
       <summary>Python Example Code</summary>
     ```python
-      import requests  # install requests package 
-      
-      api_endpoint = "placeholder"
-      jwt_token = "placeholder"  # add the jwt_token, either through environment variables or other mechanisms
-      auth_header = {"Authorization": f"Bearer {jwt_token}"}
-      upload_request_body = json.dumps({"filename": "placeholder.wav"})  # specify the filename of the upload
-      
-      presigned_url_response = requests.post(api_endpoint + "/v1/uploads", data=upload_request_body)  
+        import json
+        import requests  # install requests package
+        
+        api_endpoint = "placeholder"
+        jwt_token = "placeholder"  # add the jwt_token, either through environment variables or other mechanisms
+        auth_header = {"Authorization": f"Bearer {jwt_token}"}
+        filename = "placeholder.wav"
+        upload_request_body = json.dumps({"filename": filename})  # specify the filename of the upload
+        
+        presigned_url_response = requests.post(api_endpoint + "/v1/uploads", data=upload_request_body, headers=auth_header)
+        if presigned_url_response.status_code == 200:
+            # Sucessfully retrieved pre-signed URL
+            response_json = presigned_url_response.json()
+            unique_upload_id = response_json["upload_id"]
+            presign_info = presigned_url_response.json()["presignResponse"]
+            presigned_url = presign_info["url"]
+            fields = presign_info["fields"]
+            with open(filename, "rb") as f:
+                files = {"file": (fields["key"], f)}
+                upload_response = requests.post(presigned_url, data=fields, files=files)
+                if upload_response.status_code == 204:
+                    # successfully uploaded the file
+                    print("Success. File has been uploaded")
+                    print(f"Unique id (keep for your records): {unique_upload_id}")
+        else:
+            # the status_code can be 401, 500, etc, handle it gracefully in your application
+            raise Exception("Request to retrieve upload url failed")
     ```
+    
     </details>
+    
     
     
 

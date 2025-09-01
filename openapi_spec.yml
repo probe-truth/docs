@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: "3.0.1"
 info:
-  title: Deeptect API Documentation
-  version: 1.0.0
+  title: "dev_deeptect"
+  version: "2025-09-01 20:56:28UTC"
   description: >
     # Introduction
     
@@ -30,13 +30,13 @@ info:
     ```python
         import json
         import requests  # install requests package
-        
+    
         api_endpoint = "placeholder"
         jwt_token = "placeholder"  # add the jwt_token, either through environment variables or other mechanisms
         auth_header = {"Authorization": f"Bearer {jwt_token}"}
         filename = "placeholder.wav"
         upload_request_body = json.dumps({"filename": filename})  # specify the filename of the upload
-        
+    
         presigned_url_response = requests.post(api_endpoint + "/v1/uploads", data=upload_request_body, headers=auth_header)
         if presigned_url_response.status_code == 200:
             # Sucessfully retrieved pre-signed URL
@@ -58,165 +58,143 @@ info:
     ```
     
     </details>
-    
-    
-    
-
 servers:
-  - url: https://7biv2ac9kd.execute-api.us-east-2.amazonaws.com/
-    description: Development endpoint for Deeptect
-components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-
-  schemas:
-    LoginRequest:
-      type: object
-      required:
-        - username
-        - password
-      properties:
-        username:
-          type: string
-          description: The user's username
-        password:
-          type: string
-          description: The user's password
-
-    UploadFilePresignUrlRequest:
-      type: object
-      required:
-        - filename
-      properties:
-        filename:
-          type: string
-          description: Filename for the upload
-
-    LoginSuccessResponse:
-      type: object
-      properties:
-        id_token:
-          type: string
-          description: JWT ID token for the user
-        access_token:
-          type: string
-          description: JWT access token for API authorization
-        refresh_token:
-          type: string
-          description: Token to refresh the access token
-        expires_in:
-          type: integer
-          description: Time in seconds until the access token expires
-        description:
-          type: string
-          description: Instructions for using the tokens
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-    HealthResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Health status of the API
-
-    UserUploadResponse:
-      type: object
-      properties:
-        presignResponse:
-          type: object
-          description: Presign response from s3 containing the temporary url for uploading the specified file
-        upload_id:
-          type: string
-          description: The unique identifier which is used in subsequent API calls for the specified file
-        method:
-          type: string
-          description: The HTTP method for the upload (e.g., POST)
-
+- url: "https://7biv2ac9kd.execute-api.us-east-2.amazonaws.com/{basePath}"
+  variables:
+    basePath:
+      default: "dev"
+tags:
+- name: "environment"
+  x-amazon-apigateway-tag-value: "dev"
 paths:
+  /:
+    get:
+      responses:
+        default:
+          description: "Default response for GET /"
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "2.0"
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:370994511459:function:dev_homepage/invocations"
+        connectionType: "INTERNET"
+  /docs:
+    get:
+      responses:
+        default:
+          description: "Default response for GET /docs"
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "2.0"
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:370994511459:function:dev_api_docs/invocations"
+        connectionType: "INTERNET"
   /health:
     get:
-      summary: Check API health
-      description: Used for checking that the API service is in a healthy state
       responses:
-        '200':
-          description: API is healthy
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HealthResponse'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
+        default:
+          description: "Default response for GET /health"
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "2.0"
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:370994511459:function:dev_ping_healthcheck/invocations"
+        connectionType: "INTERNET"
+        timeoutInMillis: 5000
+  /v1/inspection/{upload_id}:
+    get:
+      responses:
+        default:
+          description: "Default response for GET /v1/inspection/{upload_id}"
+      security:
+      - dev_cognito: []
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "2.0"
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:370994511459:function:dev_inspection_result/invocations"
+        connectionType: "INTERNET"
+    parameters:
+    - name: "upload_id"
+      in: "path"
+      description: "Generated path parameter for upload_id"
+      required: true
+      schema:
+        type: "string"
+  /v1/reports:
+    get:
+      responses:
+        default:
+          description: "Default response for GET /v1/reports"
+      security:
+      - dev_cognito: []
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "2.0"
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:370994511459:function:dev_report_retriever/invocations"
+        connectionType: "INTERNET"
+  /verify_jwt:
+    get:
+      responses:
+        default:
+          description: "Default response for GET /verify_jwt"
+      security:
+      - dev_cognito: []
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "2.0"
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:370994511459:function:dev_verify_jwt/invocations"
+        connectionType: "INTERNET"
   /login:
     post:
-      summary: Authenticate a user and return JWT tokens
-      description: Authenticates a user with username and password, returning JWT tokens from Cognito User Pools
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/LoginRequest'
       responses:
-        '200':
-          description: Successful authentication
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LoginSuccessResponse'
-        '401':
-          description: Invalid username or password
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '403':
-          description: User not confirmed
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
+        default:
+          description: "Default response for POST /login"
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "2.0"
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:370994511459:function:dev_authorize_cognito/invocations"
+        connectionType: "INTERNET"
+        timeoutInMillis: 7000
+  /v1/inspection:
+    post:
+      responses:
+        default:
+          description: "Default response for POST /v1/inspection"
+      security:
+      - dev_cognito: []
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "2.0"
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:370994511459:function:dev_trigger_inference/invocations"
+        connectionType: "INTERNET"
   /v1/user_uploads:
     post:
-      summary: Generate a presigned URL for user file uploads
-      description: Creates a presigned URL or metadata for user file uploads, returning an upload ID and method
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UploadFilePresignUrlRequest'
       responses:
-        '200':
-          description: Successfully retrieved the presigned s3 url for upload
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserUploadResponse'
-
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: "Default response for POST /v1/user_uploads"
+      security:
+      - dev_cognito: []
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "2.0"
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:370994511459:function:dev_user_uploads/invocations"
+        connectionType: "INTERNET"
+components:
+  securitySchemes:
+    dev_cognito:
+      type: "oauth2"
+      flows: {}
+      x-amazon-apigateway-authorizer:
+        identitySource: "$request.header.Authorization"
+        jwtConfiguration:
+          audience:
+          - "6msdl66o4d0hu1lv4omv1mdbnl"
+          issuer: "https://cognito-idp.us-east-2.amazonaws.com/us-east-2_iHW9hTEpb"
+        type: "jwt"
+x-amazon-apigateway-importexport-version: "1.0"

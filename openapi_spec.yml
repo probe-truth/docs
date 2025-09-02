@@ -24,24 +24,25 @@ info:
     <details>
       <summary> Login Python Example Code</summary>
       ```python
-        import json
-        import requests 
-        
-        endpoint = "https://7biv2ac9kd.execute-api.us-east-2.amazonaws.com/login"
-        username = os.environ['username']  # or other mechanisms for getting the username
-        password = os.environ['password']  # or other mechanisms for getting the password
-        
-        body = json.dumps({"username": username, "password": password})
-        
-        login_response = requests.post(endpoint, data=body)
-        if login_response.status_code == 200:
-          print("Successfully authenticated") 
-          jwt_token = login_response.json()['access_token']
-          refresh_token = login_response.json()['refresh_token']
-        else:
-          # gracefully handle failures in your application e.g with retries/etc 
-          print(f"Login failed: status code {login_response.status_code} :: {login_response.text})
+          import json
+          import requests 
+          
+          endpoint = "https://7biv2ac9kd.execute-api.us-east-2.amazonaws.com/login"
+          username = os.environ['username']  # or other mechanisms for getting the username
+          password = os.environ['password']  # or other mechanisms for getting the password
+          
+          body = json.dumps({"username": username, "password": password})
+          
+          login_response = requests.post(endpoint, data=body)
+          if login_response.status_code == 200:
+            print("Successfully authenticated") 
+            jwt_token = login_response.json()['access_token']
+            refresh_token = login_response.json()['refresh_token']
+          else:
+            # gracefully handle failures in your application e.g with retries/etc 
+            print(f"Login failed: status code {login_response.status_code} :: {login_response.text})
       ```    
+    </details>
     
         
     ### Uploading a file

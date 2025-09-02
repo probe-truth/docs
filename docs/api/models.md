@@ -56,3 +56,77 @@ The appropriate model(s) are automatically selected based on the uploaded media 
 Each model contributes its prediction and confidence score to the final decision.
 
 ---
+
+## Retrieve all Model Outputs
+
+ProbeTruth offers the following endpoint to retrieve the output of all models that have contributed to the media inspection 
+
+### Endpoint 
+
+`GET https://api.probetruth.ai/v1/models/inference`
+
+
+### Authentication
+
+This endpoint requires **JWT-based token authentication** via AWS Cognito.
+
+Include the access token in the `Authorization` header.
+
+`Authorization: Bearer <your_jwt_token_here>`
+
+---
+
+### Request Body
+
+| Field     | Type   | Required | Description                       |
+|-----------|--------|----------|-----------------------------------|
+| `case_id` | string | Yes      | The unique case ID of the report. |
+
+### Example Request
+```
+curl -X POST https://api.probetruth.ai/v1/media/upload \
+  -H "Authorization: Bearer <your_jwt_token_here>" \
+  -d '{
+        "case_id": "CASE-001"
+      }'
+```
+
+### Example Success Response
+```
+{
+  "upload_id": "845f9ac7-9a71-4fcb-8e25-2b7234c6e3fc",
+  "case_id": "CASE-001",
+  "models": {
+    "DARL": {
+      "predicted": "",
+      "confidence": "",
+      "modality": "audiovisual"
+    },
+    "DBaG-Net": {
+      "predicted": "",
+      "confidence": "",
+      "modality": "visual"
+    },
+    "Atten-ViT": {
+      "predicted": "",
+      "confidence": "",
+      "modality": "visual"
+    },
+    "Audio-RRL": {
+      "predicted": "",
+      "confidence": "",
+      "modality": "audio"
+    },
+    "PSA-Net": {
+      "predicted": "",
+      "confidence": "",
+      "modality": "audio"
+    },
+    "Spot-Net": {
+      "predicted": "",
+      "confidence": "",
+      "modality": "audio"
+    }
+  }
+}
+```

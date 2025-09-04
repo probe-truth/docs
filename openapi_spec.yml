@@ -145,12 +145,14 @@ components:
         description:
           type: string
           description: Instructions for using the tokens
+
     ErrorResponse:
       type: object
       properties:
         error:
           type: string
           description: Error message
+
     HealthResponse:
       type: object
       properties:
@@ -171,6 +173,38 @@ components:
           type: string
           description: The HTTP method for the upload (e.g., POST)
 
+    TriggerInspectionRequest:
+      type: object
+      required:
+        - upload_id
+        - case_id
+      properties:
+        upload_id:
+          type: string
+          description: Unique upload_id used for this inspection
+        case_id:
+          type: string
+          description: case_id used for this inspection
+
+    TriggerInspectionResponse:
+      type: object
+      properties:
+        upload_id:
+          type: string
+          description: Unique upload_id used for this inspection
+        case_id:
+          type: string
+          description: case_id used for this inspection
+        job_id:
+          type: string
+          description: System-generated job_id for tracking this job's progress and for client app to check job status
+        analysis_status:
+          type: string
+          description: The inspection job status
+        message:
+          type: string
+          description: Generic descriptive human-readable message
+
     ReportRetrieveRequest:
       type: object
       required:
@@ -185,9 +219,27 @@ components:
           description: The case_id for which to fetch the report
 
     ReportRetrieveResponse:
+      type: string
+      format: binary
+
+    InferenceRetrieveResponse:
       type: object
       properties:
-
+        job_id:
+          type: string
+          description: The job id that is tracked internally for a requested inspection
+        case_id:
+          type: string
+          description: The case id that was specified by the user
+        status:
+          type: string
+          description: The status of the inspection request
+        predictions:
+          type: string
+          description: The predictions from each model that is used
+        created_at:
+          type: string
+          description: Date time representing when the inspection was created
 
 
 paths:
@@ -272,16 +324,24 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /reports:
+  /reports/{upload_id}/{case_id}:
     get:
       security:
         - bearerAuth: [ ]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReportRetrieveRequest'
+      summary: Get a report
+      parameters:
+        - name: upload_id
+          in: path
+          required: true
+          schema:
+            type: string
+            description: The ID of the upload for which the report is created
+        - name: case_id
+          in: path
+          required: true
+          schema:
+            type: string
+            description: The ID of the case for which the report is created
       responses:
         '200':
           description: Successfully retrieved the inspection report
@@ -289,7 +349,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReportRetrieveResponse'
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ReportRetrieveResponse'
 
+        '403':
+          description: Permission denied or missing parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
 
   /verify_jwt:
@@ -298,13 +367,73 @@ paths:
         default:
           description: "Default response for GET /verify_jwt"
       security:
-      - bearerAuth: []
+      - bearerAuth: [ ]
 
   /inspection:
     post:
-      responses:
-        default:
-          description: "Default response for POST /inspection"
       security:
         - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TriggerInspectionRequest'
+      responses:
+        '201':
+          description: Successfully created inspection job
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TriggerInspectionResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
+
+  /inspection/{upload_id}:
+    get:
+      security:
+        - bearerAuth: [ ]
+      summary: Get inspection details for an upload
+      parameters:
+        - name: upload_id
+          in: path
+          required: true
+          schema:
+            type: string
+            description: The ID of the upload to inspect
+      responses:
+        '200':
+          description: Successfully retrieved the inspection results for the upload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InferenceRetrieveResponse'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'

@@ -48,7 +48,7 @@ info:
     ### Uploading a file
     
     The API supports large file uploads by using presigned URLs. The process starts with a request to the 
-    /v1/uploads endpoint with the request body containing the "filename". The server returns a presigned URL 
+    /uploads endpoint with the request body containing the "filename". The server returns a presigned URL 
     that is then used in subsequent operations. Example code using python is provided below. 
     <details>
       <summary>File Upload Python Example Code</summary>
@@ -62,7 +62,7 @@ info:
         filename = "placeholder.wav"
         upload_request_body = json.dumps({"filename": filename})  # specify the filename of the upload
         
-        presigned_url_response = requests.post(api_endpoint + "/v1/uploads", data=upload_request_body, headers=auth_header)
+        presigned_url_response = requests.post(api_endpoint + "/uploads", data=upload_request_body, headers=auth_header)
         if presigned_url_response.status_code == 200:
             # Sucessfully retrieved pre-signed URL
             response_json = presigned_url_response.json()
@@ -89,6 +89,14 @@ info:
 servers:
   - url: https://7biv2ac9kd.execute-api.us-east-2.amazonaws.com/
     description: Development endpoint for Deeptect
+    variables:
+      stage:
+        default: dev
+        description: API stage to use (e.g., dev, v1)
+        enum:
+          - dev
+          - v1
+
 components:
   securitySchemes:
     bearerAuth:
@@ -163,6 +171,25 @@ components:
           type: string
           description: The HTTP method for the upload (e.g., POST)
 
+    ReportRetrieveRequest:
+      type: object
+      required:
+        - upload_id
+        - case_id
+      properties:
+        upload_id:
+          type: string
+          description: The upload_id for which to fetch the report
+        case_id:
+          type: string
+          description: The case_id for which to fetch the report
+
+    ReportRetrieveResponse:
+      type: object
+      properties:
+
+
+
 paths:
   /health:
     get:
@@ -218,7 +245,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /v1/user_uploads:
+  /user_uploads:
     post:
       summary: Generate a presigned URL for user file uploads
       description: Creates a presigned URL or metadata for user file uploads, returning an upload ID and method
@@ -245,13 +272,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /v1/reports:
+  /reports:
     get:
-      responses:
-        default:
-          description: "Default response for GET /v1/reports"
       security:
         - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportRetrieveRequest'
+      responses:
+        '200':
+          description: Successfully retrieved the inspection report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportRetrieveResponse'
+
+
 
   /verify_jwt:
     get:
@@ -261,11 +300,11 @@ paths:
       security:
       - bearerAuth: []
 
-  /v1/inspection:
+  /inspection:
     post:
       responses:
         default:
-          description: "Default response for POST /v1/inspection"
+          description: "Default response for POST /inspection"
       security:
         - bearerAuth: [ ]
 

@@ -306,21 +306,9 @@ paths:
       requestBody:
         required: true
         content:
-          multipart/form-data:
+          application/json:
             schema:
-              type: object
-              required:
-                - file
-                - filename
-              properties:
-                file:
-                  type: string
-                  format: binary
-                  description: The file to upload
-                filename:
-                  type: string
-                  description: The name of the uploaded file
-
+              $ref: '#/components/schemas/UploadFilePresignUrlRequest'
       responses:
         '200':
           description: Successfully retrieved the presigned s3 url for upload

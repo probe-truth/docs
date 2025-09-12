@@ -241,6 +241,134 @@ components:
           type: string
           description: Date time representing when the inspection was created
 
+    ApiKeyCreateResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Success message
+        api_key:
+          type: string
+          description: The generated API key
+        id:
+          type: string
+          description: Unique identifier for the API key
+        expires_at:
+          type: string
+          format: date-time
+          description: When the API key expires
+        created_at:
+          type: string
+          format: date-time
+          description: When the API key was created
+        status:
+          type: string
+          description: Current status of the API key
+
+    ApiKeyListResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Success message
+        api_keys:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Unique identifier for the API key
+              api_key_id:
+                type: string
+                description: Partial API key (first 20 characters + ...)
+              created_at:
+                type: string
+                format: date-time
+                description: When the API key was created
+              expires_at:
+                type: string
+                format: date-time
+                description: When the API key expires
+              status:
+                type: string
+                description: Current status of the API key
+              stage:
+                type: string
+                description: The stage this API key is for
+        total_count:
+          type: integer
+          description: Total number of API keys
+
+    ApiKeyDeleteRequest:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the API key to delete
+
+    ApiKeyRevokeRequest:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the API key to revoke
+
+    ApiKeyUpdateRequest:
+      type: object
+      required:
+        - id
+        - updates
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the API key to update
+        updates:
+          type: object
+          properties:
+            status:
+              type: string
+              enum: [ACTIVE, REVOKED, SUSPENDED]
+              description: New status for the API key
+            expires_at:
+              type: string
+              format: date-time
+              description: New expiration date for the API key
+
+    ApiKeyManagementResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Success message
+        id:
+          type: string
+          description: The API key identifier
+        updated_fields:
+          type: array
+          items:
+            type: string
+          description: Fields that were updated
+        updated_at:
+          type: string
+          format: date-time
+          description: When the API key was last updated
+        current_status:
+          type: string
+          description: Current status of the API key
+        expires_at:
+          type: string
+          format: date-time
+          description: Current expiration date
+        revoked_at:
+          type: string
+          format: date-time
+          description: When the API key was revoked (if applicable)
+
 
 paths:
   /health:
@@ -427,6 +555,217 @@ paths:
               schema:
                 $ref: '#/components/schemas/InferenceRetrieveResponse'
         '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api_key/create:
+    get:
+      summary: Create a new API key
+      description: Creates a new API key for the authenticated user. Maximum of 5 active API keys per user.
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          description: API key created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyCreateResponse'
+        '429':
+          description: Maximum API key limit reached
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  error_code:
+                    type: string
+                  active_keys_count:
+                    type: integer
+                  max_allowed:
+                    type: integer
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api_key/list:
+    get:
+      summary: List all API keys for the authenticated user
+      description: Returns all API keys for the authenticated user, with partial API key values for security
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: API keys retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyListResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api_key/delete:
+    post:
+      summary: Delete an API key
+      description: Permanently deletes the specified API key. The user must own the API key.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyDeleteRequest'
+      responses:
+        '200':
+          description: API key deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyManagementResponse'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: API key not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Permission denied - API key doesn't belong to user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api_key/revoke:
+    post:
+      summary: Revoke an API key
+      description: Revokes the specified API key by setting its status to REVOKED. The user must own the API key.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyRevokeRequest'
+      responses:
+        '200':
+          description: API key revoked successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyManagementResponse'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: API key not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: API key is already revoked
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api_key/update:
+    post:
+      summary: Update an API key
+      description: Updates properties of an API key such as status or expiration date. The user must own the API key.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyUpdateRequest'
+      responses:
+        '200':
+          description: API key updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyManagementResponse'
+        '400':
+          description: Invalid request body or update fields
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: API key not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
           description: Unauthorized
           content:
             application/json:
